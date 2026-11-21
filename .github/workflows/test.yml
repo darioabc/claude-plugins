@@ -1,0 +1,31 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test plugins/*/tests/*.test.mjs
+      # Every JSON file parses, and every hook command points at a file that exists.
+      - run: |
+          node -e '
+            const fs = require("fs"), path = require("path");
+            for (const f of ["./.claude-plugin/marketplace.json", ...fs.readdirSync("plugins").flatMap(p => [`plugins/${p}/.claude-plugin/plugin.json`, `plugins/${p}/hooks/hooks.json`])].filter(fs.existsSync)) JSON.parse(fs.readFileSync(f, "utf8"));
+            for (const p of fs.readdirSync("plugins")) {
+              const h = `plugins/${p}/hooks/hooks.json`;
+              if (!fs.existsSync(h)) continue;
+              const text = fs.readFileSync(h, "utf8");
+              for (const [, rel] of text.matchAll(/\$\{CLAUDE_PLUGIN_ROOT\}\/([^"\\ ]+)/g)) {
+                if (!fs.existsSync(path.join("plugins", p, rel))) { console.error(`${h}: ${rel} is missing`); process.exit(1); }
+              }
+            }
+            console.log("manifests ok");
+          '

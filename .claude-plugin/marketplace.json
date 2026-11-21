@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "darioabc",
+  "description": "Claude Code plugins for working the same way across projects.",
+  "owner": {
+    "name": "darioabc"
+  },
+  "plugins": [
+    {
+      "name": "repo-kit",
+      "description": "One project setup for every repo: CLAUDE.md in the house shape, the plans convention with a Plan: line on every PR, the plans board at session start, and a guard against heredocs inside $(...).",
+      "version": "0.1.0",
+      "source": "./plugins/repo-kit",
+      "category": "productivity"
+    }
+  ]
+}

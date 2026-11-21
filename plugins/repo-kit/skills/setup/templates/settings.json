@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "darioabc": {
+      "source": {
+        "source": "github",
+        "repo": "darioabc/claude-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "repo-kit@darioabc": true
+  }
+}

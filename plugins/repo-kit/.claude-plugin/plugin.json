@@ -1,0 +1,12 @@
+{
+  "name": "repo-kit",
+  "version": "0.1.0",
+  "description": "One project setup for every repo: /repo-kit:setup brings a repo to the house shape (CLAUDE.md, launch.json, plugin on, ignores, secrets rule), /repo-kit:plans keeps work that spans sessions in docs/plans with a Plan: line on every PR, and two hooks show the plans board at session start and block heredocs inside $(...).",
+  "author": {
+    "name": "darioabc"
+  },
+  "homepage": "https://github.com/darioabc/claude-plugins/tree/main/plugins/repo-kit",
+  "repository": "https://github.com/darioabc/claude-plugins",
+  "license": "MIT",
+  "keywords": ["setup", "claude-md", "plans", "pull-requests", "hooks"]
+}
